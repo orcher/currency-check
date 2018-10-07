@@ -1,0 +1,66 @@
+.formContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#equalSign {
+    font-size: 30px;
+    margin: 5px;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.numberInput {
+    width: 60px;
+    margin: 5px;
+    border-style: solid;
+    border-color: lightgray;
+    border-width: 1px;
+    border-radius: 3px;
+    text-align: center;
+}
+
+.selectInput {
+    width: 60px;
+    margin: 5px;
+    border-style: solid;
+    border-color: lightgray;
+    border-width: 1px;
+    border-radius: 3px;
+    text-align: center;
+}
+
+.buttonInput {
+    margin: 5px;
+    background: none;
+    border-style: solid;
+    border-color: lightgray;
+    border-width: 1px;
+    border-radius: 3px;
+}
+
+:hover {
+    border-color: gray;
+}
+
+.formContainer {
+    margin-top: 30px;
+}
+
+.mainContainer {
+
+}
+
+.fotter {
+    text-align: center;
+}
