@@ -3,19 +3,13 @@ const fs = require('fs')
 const fetch = require('node-fetch')
 const url = require('url')
 
-//http://data.fixer.io/api/latest
-
-//    ? access_key = YOUR_ACCESS_KEY
-//    & base = GBP
-//    & symbols = USD, AUD, CAD, PLN, MXN
-
-//http://data.fixer.io/api/latest?access_key=3978bfe9820d0735b3ef72a64505de38
+const dataFileName = 'data.json'
 
 function fetchData(resp, primary, secondary) {
-    fetch('http://data.fixer.io/api/latest?base=' + primary + '&access_key=3978bfe9820d0735b3ef72a64505de38')
+    fetch('http://data.fixer.io/api/latest?access_key=3978bfe9820d0735b3ef72a64505de38')
         .then(res => res.json())
         .then(res => {
-            fs.writeFile('./data', JSON.stringify(res), function () {
+            fs.writeFile(dataFileName, JSON.stringify(res), function () {
                 console.log('Data written to file.')
                 writeResponse(resp, primary, secondary)
             })
@@ -24,7 +18,7 @@ function fetchData(resp, primary, secondary) {
 }
 
 function readDataFromFile() {
-    const json = JSON.parse(fs.readFileSync('data', 'utf8'))
+    const json = JSON.parse(fs.readFileSync(dataFileName, 'utf8'))
     return JSON.stringify(json.rates)
 }
 
@@ -36,9 +30,15 @@ function writeResponse(resp) {
 }
 
 function needUpdate() {
-    //TODO: Add checking for date and if file exists
-    const json = JSON.parse(fs.readFileSync('data', 'utf8'))
-    return !json.success
+    const hasData = fs.existsSync(dataFileName)
+    if (!hasData) return true
+
+    const json = JSON.parse(fs.readFileSync(dataFileName, 'utf8'))
+    const lastUpdate = new Date(json.date)
+    lastUpdate.setDate(lastUpdate.getDate() + 1)
+    const now = new Date();
+
+    return !json.success || lastUpdate < now
 }
 
 function onRequest(req, res) {

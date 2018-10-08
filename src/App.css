@@ -21,7 +21,7 @@ input[type="number"] {
 }
 
 .numberInput {
-    width: 60px;
+    width: auto;
     margin: 5px;
     border-style: solid;
     border-color: lightgray;
@@ -41,6 +41,7 @@ input[type="number"] {
 }
 
 .buttonInput {
+    width: 60px;
     margin: 5px;
     background: none;
     border-style: solid;
@@ -59,8 +60,4 @@ input[type="number"] {
 
 .mainContainer {
 
-}
-
-.fotter {
-    text-align: center;
 }

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './App.css';
-import { Button, DropDownButton, Input, Box, Txt, Provider } from 'rendition';
 
 class App extends Component {
     constructor(props) {
@@ -44,7 +43,7 @@ class App extends Component {
 
                 const json = JSON.parse(data)
                 const rate = (json[secondaryCurrency] / json[primaryCurrency]) * howMuch
-
+                
                 this.setState({ rate: rate})
             })
             .catch(err => console.log('Error: ' + err))
@@ -54,9 +53,6 @@ class App extends Component {
         this.fetchData(this.getURL())
     }
 
-    // Add onChange in number input and cut if too long
-    // Split form in smaller modules
-    // Use rendition
     render() {
         return (
             <div className='mainContainer'>
@@ -76,13 +72,16 @@ class App extends Component {
                     </select>
 
                     <input type='button' onClick={this.handleGet} value="Get" className='buttonInput'/>
-                </div>
-                <div className='fotter'>
-                    {this.state.rate}
+
                 </div>
             </div>
         );
     }
 }
+
+App.propTypes = {
+    rate: PropTypes.string,
+    selectOptions: PropTypes.array
+};
 
 export default App;
